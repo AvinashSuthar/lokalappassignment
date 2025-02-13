@@ -94,15 +94,14 @@ export default function Index() {
   const renderJobCard = useCallback(
     ({ item }: { item: Job }) => {
       const isBookmarked = bookmarkedJobs.some((job) => job.id === item.id);
-      console.log(isBookmarked)
+      console.log(isBookmarked);
       const place = item.primary_details?.Place ?? "Location not available";
       const salary = item.primary_details?.Salary ?? "Salary not specified";
 
       return (
         <View style={styles.card}>
           {/* Bookmark Button on the top-right */}
-          {/* @ts-ignore */}
-          <View style={{ zIndex: "100" }}>
+          <View style={{ zIndex: 100 }}>
             <TouchableOpacity
               style={styles.bookmarkButton}
               onPress={() => toggleBookmark(item)}
@@ -119,9 +118,9 @@ export default function Index() {
           <TouchableOpacity
             onPress={() =>
               router.push({
-                //@ts-ignore
-                pathname: `/screens/Jobs/${item.id}`,
+                pathname: `/screens/Jobs/[id]`, // Use dynamic segment
                 params: {
+                  id: item.id.toString(), // Ensure id is a string
                   title: item.title,
                   place,
                   salary,

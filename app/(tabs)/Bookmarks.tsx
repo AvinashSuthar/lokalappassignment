@@ -46,13 +46,14 @@ const Bookmarks = () => {
       ) : (
         <FlatList
           data={bookmarkedJobs}
-          //@ts-ignore
-          keyExtractor={(job) => job.id}
+          keyExtractor={(job) => job.id.toString()}
           renderItem={({ item }) => (
             <View style={styles.card}>
               <Text style={styles.jobTitle}>{item.title}</Text>
               <Text style={styles.company}>{item.company_name}</Text>
-              <Text style={styles.detail}>📍 {item.primary_details?.Place}</Text>
+              <Text style={styles.detail}>
+                📍 {item.primary_details?.Place}
+              </Text>
               <Text style={styles.detail}>
                 💰 {item.primary_details?.Salary}
               </Text>
